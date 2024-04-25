@@ -1,0 +1,115 @@
+.sidebar {
+	background: var(--decorative-color);
+	color: var(--decorative-text-color);
+	max-width: 200px;
+	height: 100vh;
+	padding: 10px;
+	position: relative;
+}
+
+.sidebar_collapsed {
+	width: 100px;
+}
+
+.sidebar_expanded {
+	width: 100%;
+}
+
+.collapsed {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.logoContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 10px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+	width: fit-content;
+	border-bottom: 2px solid var(--decorative-text-color);
+}
+
+.logo:hover {
+	background: url('../../public//logo-collapsed-inversed.svg');
+}
+
+.menuButton {
+	width: 50px;
+	height: 50px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	transition: all 0.3s;
+	border-radius: 5px;
+}
+
+.menuButton:hover {
+	background-color: var(--decorative-text-color-onhover);
+}
+
+.menuIcon {
+	stroke: var(--decorative-text-color);
+	padding: 10px;
+}
+
+.menuIcon:hover {
+	stroke: white;
+}
+
+.navList {
+	list-style-type: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.navIcon {
+	width: 50px;
+	height: 50px;
+	transition: all 0.3s;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.navIcon path {
+	stroke: var(--decorative-text-color);
+}
+
+.navIcon:hover {
+	background-color: var(--decorative-text-color-onhover);
+}
+
+.navIcon:hover path {
+	transition: all 0.3s;
+	stroke: white;
+}
+
+.signInButton_collapsed {
+	width: 50px;
+	height: 50px;
+	transition: all 0.3s;
+	padding: 10px;
+	border-radius: 5px;
+	background: none;
+	border: none;
+	cursor: pointer;
+	position: absolute;
+	bottom: 20px;
+	right: 25%;
+}
+
+.signInButton_collapsed:hover {
+	background-color: var(--decorative-text-color-onhover);
+}
+
+.signInIcon_collapsed {
+	stroke: var(--decorative-text-color);
+}
+
+.signInIcon_collapsed:hover {
+	stroke: white;
+}

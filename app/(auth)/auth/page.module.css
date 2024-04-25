@@ -36,8 +36,13 @@
 }
 
 .button {
-	max-width: 160px;
+	max-width: 150px;
 	width: 100%;
+}
+
+.button_active {
+	background-color: var(--primary-color);
+	color: white;
 }
 
 .form {
@@ -52,6 +57,11 @@
 	margin-bottom: 20px;
 }
 
+.input::placeholder {
+	text-transform: uppercase;
+	letter-spacing: 3px;
+}
+
 .label {
 	font-size: 18px;
 }
@@ -64,12 +74,22 @@
 	cursor: pointer;
 	background: var(--primary-color);
 	color: white;
+	text-align: center;
 }
 
 .submitButton:hover {
-	background: #238aff;
+	background: var(--primary-color-hover);
 }
 
 .resetButton {
 	font-size: 16px;
+}
+
+.labelContainer {
+	position: relative;
+}
+
+.generatorButton {
+	position: absolute;
+	margin-left: 10px;
 }

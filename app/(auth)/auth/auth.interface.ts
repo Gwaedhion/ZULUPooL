@@ -10,6 +10,13 @@ export interface IUserLoginResponse {
 	isReadOnly: boolean;
 }
 
+export interface IUserSignUpPayload {
+	email: string;
+	login: string;
+	name: string;
+	password: string;
+}
+
 export interface IUserSession {
 	id: string | null;
 	sessionId: string | null;

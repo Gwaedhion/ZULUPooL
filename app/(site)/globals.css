@@ -1,7 +1,10 @@
 :root {
 	--primary-color: #107eff;
+	--primary-color-hover: #238aff;
 	--accent-color: #8f16ff;
-	--decorative-color: #cca43b;
+	--decorative-color: #2b2b2b;
+	--decorative-text-color: #989898;
+	--decorative-text-color-onhover: #3b3b3b;
 }
 
 * {
