@@ -1,0 +1,24 @@
+.selectContainer {
+	padding: 20px;
+	margin-bottom: 10px;
+	width: fit-content;
+	border-radius: 10px;
+	background-color: var(--decorative-color);
+}
+
+.select {
+	width: 150px;
+}
+
+.radioGroupContainer {
+	padding: 20px;
+	border-radius: 10px;
+	width: 190px;
+	background-color: var(--decorative-color);
+}
+
+.radioGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}

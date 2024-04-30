@@ -1,0 +1,153 @@
+.header {
+	position: fixed;
+	right: 5px;
+	top: 5px;
+	display: flex;
+	flex-direction: row;
+	gap: 10px;
+	padding: 5px;
+	border-radius: 5px;
+	background-color: var(--decorative-color);
+	color: white;
+	transition: all 0.6s ease;
+	z-index: 1;
+}
+
+.header_expanded {
+	width: 600px;
+	height: 58px;
+}
+
+.header_collapsed {
+	width: 58px;
+	height: 58px;
+}
+
+.headerDecoration {
+	background-color: var(--primary-color);
+	position: absolute;
+	border-radius: 5px;
+	right: 12px;
+	transition: all 0.6s;
+	top: 12px;
+	background-color: white;
+	opacity: 50%;
+	position: fixed;
+}
+
+.headerDecoration_collapsed {
+	width: 55px;
+	height: 55px;
+}
+
+.headerDecoration_expanded {
+	width: 597px;
+	height: 55px;
+}
+
+.selectWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 10px;
+	padding: 0 10px;
+	position: relative;
+}
+
+.selectContainer {
+	position: absolute;
+}
+
+.selectContainer__theme {
+	left: 125px;
+}
+
+.selectContainer__language {
+	left: 295px;
+}
+
+.selectText {
+	position: absolute;
+}
+
+.selectText__theme {
+	left: -65px;
+	top: 5px;
+}
+
+.selectText__language {
+	left: -85px;
+	top: 5px;
+}
+
+.selectWrapper {
+	animation: blur-in 0.4s linear both;
+}
+@keyframes blur-in {
+	0% {
+		filter: blur(12px);
+		opacity: 0;
+	}
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+
+.icon_collapsed {
+	width: 48px;
+	height: 48px;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.icon_collapsed:hover {
+	stroke: white;
+	background-color: var(--decorative-bg-color-onhover);
+}
+
+.icon_expanded {
+	width: 48px;
+	height: 48px;
+	padding: 10px;
+	border-radius: 5px;
+	stroke: var(--decorative-text-color);
+	position: absolute;
+	top: -25px;
+	left: -8px;
+}
+
+.icon_expanded:hover {
+	stroke: white;
+	background-color: var(--decorative-bg-color-onhover);
+}
+
+.stateButton {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.stateButton {
+	animation: blur-in 0.5s linear both;
+}
+@keyframes blur-in {
+	0% {
+		filter: blur(12px);
+		opacity: 0;
+	}
+	100% {
+		filter: blur(0);
+		opacity: 1;
+	}
+}
+
+.icon_collapsed {
+	stroke: var(--decorative-text-color);
+}
+
+.logoutButton {
+	width: 180px;
+	position: absolute;
+	left: 400px;
+}
