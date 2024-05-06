@@ -10,15 +10,24 @@
 	width: 150px;
 }
 
-.radioGroupContainer {
+.coinButtonsContainer {
 	padding: 20px;
-	border-radius: 10px;
-	width: 190px;
 	background-color: var(--decorative-color);
+	border-radius: 10px;
 }
 
-.radioGroup {
+.coinButtons {
 	display: flex;
 	flex-direction: column;
-	gap: 10px;
+	gap: 25px;
+}
+
+.active {
+	background-color: var(--primary-color);
+	border: none;
+	color: white;
+}
+
+.active:hover {
+	color: var(--primary-color-hover);
 }

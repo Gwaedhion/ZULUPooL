@@ -45,6 +45,7 @@
 	flex-direction: column;
 	align-items: center;
 	gap: 20px;
+	border: 1px solid #636363;
 }
 
 .box:hover {
@@ -73,6 +74,7 @@
 	border-radius: 10px;
 	gap: 20px;
 	margin-bottom: 50px;
+	border: 1px solid #636363;
 }
 
 .contactsContainer:hover {

@@ -1,30 +1,61 @@
 'use client';
-import { ConfigProvider, Radio, Select } from 'antd';
+import { Button, Select } from 'antd';
 import styles from './CoinSelect.module.css';
-import { ICoinSelectProps } from './CoinSelect.props';
 import { useEffect, useState } from 'react';
+import { ICoinSelectValues } from '@/app/(site)/global.interface';
+import cn from 'classnames';
+
+const coinButtonsArr = [
+	['BTC', 'BCHN', 'BSV', 'DGB.sha256', 'HTR', 'XEC', 'sha256'],
+	['DGB.odo'],
+	['DGB.qubit'],
+	['LTC', 'DGB.scrypt', 'DOGE', 'scrypt'],
+	['DGB.skein'],
+	['XPM'],
+];
 
 export default function CoinSelect({
-	className,
-	...props
-}: ICoinSelectProps): JSX.Element {
-	const darkThemeTextColor = 'rgb(219, 219, 219)';
+	currentMainCoin,
+	setCurrentMainCoin,
+	currentSecondaryCoin,
+	setCurrentSecondaryCoin,
+}: ICoinSelectValues): JSX.Element {
+	const [mainCoin, setMainCoin] = useState('sha256');
 
-	const [mainCoin, setMainCoin] = useState('');
+	const [secondaryCoin, setSecondaryCoin] = useState('BTC');
+
+	// Assign coin and subCoin values to parent variables.
+
+	const handleMainCoin = () => {
+		setCurrentMainCoin(mainCoin);
+	};
+
+	const handleSecondaryCoin = () => {
+		setCurrentSecondaryCoin(secondaryCoin);
+	};
+
+	let chosenMain = mainCoin;
+	let chosenSecondary = secondaryCoin;
 
 	useEffect(() => {
-		setMainCoin('sha256');
-	}, []);
+		setCurrentMainCoin(chosenMain);
+		setMainCoin(chosenMain);
+	}, [chosenMain]);
+
+	useEffect(() => {
+		setCurrentSecondaryCoin(chosenSecondary);
+		setSecondaryCoin(chosenSecondary);
+	}, [chosenSecondary]);
 
 	return (
-		<div className={styles.wrapper} {...props}>
+		<div className={styles.wrapper}>
 			<div className={styles.selectContainer}>
 				<Select
 					className={styles.select}
 					defaultValue={'sha256'}
 					onChange={(e) => {
 						setMainCoin(e);
-						console.log(mainCoin);
+						handleMainCoin();
 					}}
 				>
 					<Select.Option value="sha256">sha256</Select.Option>
@@ -36,60 +67,119 @@ export default function CoinSelect({
 				</Select>
 			</div>
 
-			<div className={styles.radioGroupContainer}>
+			<div className={styles.coinButtonsContainer}>
 				{mainCoin == 'sha256' && (
-					<div className={styles.radioContainer}>
-						<Radio.Group
-							className={styles.radioGroup}
-							defaultValue={'BTC'}
-						>
-							<ConfigProvider
-								theme={{
-									components: {
-										Radio: {
-											colorText: darkThemeTextColor,
-										},
-									},
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[0].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
 								}}
 							>
-								<Radio
-									className={styles.radioButton}
-									value={'BTC'}
-								>
-									BTC
-								</Radio>
-								<Radio
-									className={styles.radioButton}
-									value={'BCHN'}
-								>
-									BCHN
-								</Radio>
-								<Radio
-									className={styles.radioButton}
-									value={'BSV'}
-								>
-									BSV
-								</Radio>
-								<Radio
-									className={styles.radioButton}
-									value={'DGB.sha256'}
-								>
-									DGB.sha256
-								</Radio>
-								<Radio
-									className={styles.radioButton}
-									value={'HTR'}
-								>
-									HTR
-								</Radio>
-								<Radio
-									className={styles.radioButton}
-									value={'XEC'}
-								>
-									XEC
-								</Radio>
-							</ConfigProvider>
-						</Radio.Group>
+								{item}
+							</Button>
+						))}
+					</div>
+				)}
+				{mainCoin == 'odocrypt' && (
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[1].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
+								}}
+							>
+								{item}
+							</Button>
+						))}
+					</div>
+				)}
+				{mainCoin == 'qubit' && (
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[2].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
+								}}
+							>
+								{item}
+							</Button>
+						))}
+					</div>
+				)}
+				{mainCoin == 'scrypt' && (
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[3].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
+								}}
+							>
+								{item}
+							</Button>
+						))}
+					</div>
+				)}
+				{mainCoin == 'skein' && (
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[4].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
+								}}
+							>
+								{item}
+							</Button>
+						))}
+					</div>
+				)}
+				{mainCoin == 'PrimePOW' && (
+					<div className={styles.coinButtons}>
+						{coinButtonsArr[5].map((item) => (
+							<Button
+								className={cn(styles.button, {
+									[styles.active]: secondaryCoin == item,
+								})}
+								key={item}
+								onClick={(e) => {
+									e.preventDefault();
+									setSecondaryCoin(item);
+									handleSecondaryCoin();
+								}}
+							>
+								{item}
+							</Button>
+						))}
 					</div>
 				)}
 			</div>

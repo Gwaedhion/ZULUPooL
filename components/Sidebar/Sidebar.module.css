@@ -315,7 +315,7 @@
 }
 
 .isActive_collapsed {
-	background-color: var(--accent-color);
+	background-color: var(--primary-color);
 	width: 77%;
 }
 
@@ -324,7 +324,7 @@
 }
 
 .isActive_expanded {
-	background-color: var(--accent-color);
+	background-color: var(--primary-color);
 	width: 90%;
 }
 
@@ -333,9 +333,9 @@
 }
 
 .isActive_collapsed:hover .navIcon {
-	background-color: #6a40ff;
+	background-color: var(--primary-color-hover);
 }
 
 .isActive_expanded:hover {
-	background-color: #6a40ff;
+	background-color: var(--primary-color-hover);
 }

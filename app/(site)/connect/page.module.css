@@ -5,4 +5,107 @@
 	color: rgb(219, 219, 219);
 	margin-top: 5px;
 	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.pageTop {
+	display: flex;
+	gap: 10px;
+}
+
+.tableContainer {
+	padding: 20px;
+	background-color: var(--decorative-color);
+	border-radius: 10px;
+	max-height: 439px;
+	margin-bottom: 10px;
+}
+
+.tableTitle {
+	margin-bottom: 10px;
+}
+
+.tableSubtitle {
+	margin-bottom: 20px;
+}
+
+.table {
+	font-size: 18px;
+}
+
+.table tr td {
+	text-align: center;
+	height: 20px;
+}
+
+.table th {
+	width: 250px;
+	height: 72px;
+	background-color: var(--primary-color);
+	color: white;
+}
+
+.table th div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.coinInfoContainer {
+	padding: 20px;
+	border-radius: 10px;
+	background-color: var(--decorative-color);
+	margin-bottom: 10px;
+}
+
+.coinInfoTitle {
+	margin-bottom: 20px;
+}
+
+.styledText {
+	color: var(--primary-color);
+}
+
+.instanceInfo {
+	padding: 20px;
+	border-radius: 10px;
+	background-color: var(--decorative-color);
+	margin-bottom: 10px;
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+
+.icon {
+	width: 30px;
+	height: 30px;
+}
+
+.paymentsContainer {
+	padding: 20px;
+	border-radius: 10px;
+	background-color: var(--decorative-color);
+	margin-bottom: 10px;
+}
+
+.paymentsWrapper {
+	display: flex;
+	gap: 10px;
+	line-height: 24px;
+}
+
+.titleContainer {
+	display: flex;
+	gap: 20px;
+	align-items: center;
+	margin-bottom: 10px;
+}
+
+.paymentsContainer:last-of-type {
+	width: 50%;
+}
+
+.paymentsButton {
+	margin-bottom: 5px;
 }

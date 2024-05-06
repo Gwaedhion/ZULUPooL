@@ -1,0 +1,17 @@
+.pageWrapper {
+	max-width: 1750px;
+	margin-left: auto;
+	margin-right: auto;
+	color: rgb(219, 219, 219);
+	margin-top: 5px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+}
+
+.tableContainer {
+	padding: 20px;
+	background-color: var(--decorative-color);
+	border-radius: 10px;
+	margin-left: 10px;
+}

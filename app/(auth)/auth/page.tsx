@@ -34,24 +34,15 @@ export default function Auth() {
 
 	const tryToSignIn = async () => {
 		try {
-			if (
-				validator.isAscii(signInPayload.login) &&
-				validator.isAscii(signInPayload.password) &&
-				validator.isAscii(signInPayload.totp)
-			) {
-				await axios
-					.post(
-						API.user.auth.userLogin,
-						JSON.stringify(signInPayload)
-					)
-					.then((res) => {
-						sessionStorage.setItem('sessionID', res.data.sessionid);
-						setCookie('isReadOnly', res.data.isReadOnly);
-						if (res.data.status == 'ok') {
-							router.push('/');
-						}
-					});
-			}
+			await axios
+				.post(API.user.auth.userLogin, JSON.stringify(signInPayload))
+				.then((res) => {
+					sessionStorage.setItem('sessionID', res.data.sessionid);
+					setCookie('isReadOnly', res.data.isReadOnly);
+					if (res.data.status == 'ok') {
+						router.push('/');
+					}
+				});
 		} catch (error) {
 			setSignInErrorState(error);
 			console.log(error);
@@ -81,20 +72,14 @@ export default function Auth() {
 			if (signUpPayload.name === '') {
 				generatePublicName();
 			}
-			if (
-				validator.isAscii(signUpPayload.login) &&
-				validator.isAscii(signUpPayload.name) &&
-				validator.isAscii(signUpPayload.password) &&
-				validator.isEmail(signUpPayload.email)
-			) {
-				await axios.post(
-					API.user.auth.userCreate,
-					JSON.stringify(signUpPayload)
-				);
-				setTimeout(() => {
-					router.push('/');
-				}, 1000);
-			}
+
+			await axios.post(
+				API.user.auth.userCreate,
+				JSON.stringify(signUpPayload)
+			);
+			setTimeout(() => {
+				router.push('/');
+			}, 1000);
 		} catch (error) {
 			setSignUpErrorState(error);
 			console.log(error);
@@ -260,16 +245,20 @@ export default function Auth() {
 							>
 								Forgot password?
 							</Button>
-							<Input
+							<Button
 								value={'Login'}
 								className={cn(
 									styles.button,
 									styles.submitButton
 								)}
 								size="large"
-								type="submit"
-								onClick={() => tryToSignIn()}
-							/>
+								onClick={(e) => {
+									e.preventDefault();
+									tryToSignIn();
+								}}
+							>
+								LOGIN
+							</Button>
 						</Form>
 					)}
 					{authState == 'sign-up' && (
