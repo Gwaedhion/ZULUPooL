@@ -31,3 +31,7 @@
 .active:hover {
 	color: var(--primary-color-hover);
 }
+
+.title {
+	margin-bottom: 10px;
+}

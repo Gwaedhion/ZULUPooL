@@ -13,6 +13,7 @@
 	position: absolute;
 	top: 0px;
 	position: fixed;
+	overflow: hidden;
 }
 
 .sidebar_expanded {
@@ -68,6 +69,7 @@
 	transition: all 0.3s;
 	top: 75px;
 	left: 70px;
+	overflow: hidden;
 }
 
 .logoText_expanded {
@@ -84,8 +86,40 @@
 	}
 }
 
+.logo__prop {
+	position: absolute;
+	padding: 5px 5px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	background-color: var(--decorative-color);
+	color: var(--decorative-text-color);
+	border-radius: 5px;
+	width: max-content;
+	font-size: 14px;
+	margin-left: 75px;
+	top: 85px;
+	display: none;
+}
+
+.logo__prop {
+	animation: scale-up-center 0.2s;
+}
+@keyframes scale-up-center {
+	0% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 .logo:hover {
 	background: url('../../public//logo-collapsed-inversed.svg');
+}
+
+.logoLink_collapsed:hover .logo__prop {
+	display: block;
 }
 
 .menu_expanded {
@@ -106,8 +140,39 @@
 	margin-left: 5px;
 }
 
+.menu__prop {
+	position: absolute;
+	padding: 5px 5px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	background-color: var(--decorative-color);
+	color: var(--decorative-text-color);
+	border-radius: 5px;
+	display: none;
+	width: max-content;
+	font-size: 14px;
+	margin-left: 70px;
+	top: 25px;
+}
+
+.menu__prop {
+	animation: scale-up-center 0.2s;
+}
+@keyframes scale-up-center {
+	0% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 .menuButton_collapsed:hover {
 	background-color: var(--decorative-bg-color-onhover);
+}
+.menuButton_collapsed:hover .menu__prop {
+	display: block;
 }
 
 .menuButton_expanded {
@@ -271,12 +336,43 @@
 	bottom: 20px;
 }
 
+.signIn__prop {
+	position: absolute;
+	bottom: 15px;
+	margin-left: 70px;
+	padding: 5px 5px;
+	height: 30px;
+	display: flex;
+	align-items: center;
+	background-color: var(--decorative-color);
+	color: var(--decorative-text-color);
+	border-radius: 5px;
+	width: max-content;
+	display: none;
+}
+
+.signIn__prop {
+	animation: scale-up-center 0.2s;
+}
+@keyframes scale-up-center {
+	0% {
+		transform: scale(0.5);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
+
 .authLink_expanded {
 	display: flex;
 	align-items: center;
 	margin-bottom: 4px;
 	width: 170px;
 	border-radius: 5px;
+}
+
+.authLink_collapsed:hover .signIn__prop {
+	display: block;
 }
 
 .authLink_expanded:hover {

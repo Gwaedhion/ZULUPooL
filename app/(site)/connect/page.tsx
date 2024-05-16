@@ -14,6 +14,7 @@ import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import CheckIcon from '../../../public/startwork-page/check-icon.svg';
 import AlertIcon from '../../../public/startwork-page/alert-icon.svg';
 import QuestionmarkIcon from '../../../public/startwork-page/questionmark-icon.svg';
+import SupportIcon from '../../../public/startwork-page/support.svg';
 import { Button } from 'antd';
 import { useRouter } from 'next/navigation';
 
@@ -29,9 +30,15 @@ export default function StartWorkPage(): JSX.Element {
 
 	useEffect(() => {
 		const getCoinInstances = async () => {
-			await axios.post(API.user.user.instanceEnumerateAll).then((res) => {
-				setApiData(res.data.instances);
-			});
+			try {
+				await axios
+					.post(API.user.user.instanceEnumerateAll)
+					.then((res) => {
+						setApiData(res.data.instances);
+					});
+			} catch (error) {
+				console.log(error);
+			}
 		};
 		getCoinInstances();
 	}, []);
@@ -41,18 +48,24 @@ export default function StartWorkPage(): JSX.Element {
 		sessionId: sessionStorage.getItem('sessionID'),
 	};
 
-	useEffect(() => {
-		const getUserCredentials = async () => {
-			if (sessionStorage.getItem('sessionId')?.length != 0) {
+	const getUserCredentials = async () => {
+		if (sessionStorage.getItem('sessionId')?.length != 0) {
+			try {
+				await axios
+					.post(
+						API.user.user.userGetCredentials,
+						JSON.stringify(userSession)
+					)
+					.then((res) => setUserCredentials(res.data));
+			} catch (error) {
+				console.log(error);
 			}
-			await axios
-				.post(
-					API.user.user.userGetCredentials,
-					JSON.stringify(userSession)
-				)
-				.then((res) => setUserCredentials(res.data));
-		};
+		}
+	};
+
+	useEffect(() => {
 		getUserCredentials();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const modifyApiData = () => {
@@ -62,7 +75,7 @@ export default function StartWorkPage(): JSX.Element {
 				type: item.type,
 				port: item.port,
 				shareDiff: item.shareDiff,
-				backends: Array(item.backends.join(', ')),
+				backends: Array(item.backends!.join(', ')),
 			};
 			modifiedData.push(item);
 		});
@@ -72,7 +85,7 @@ export default function StartWorkPage(): JSX.Element {
 	modifyApiData();
 
 	const tableDataArray = modifiedData.filter((item) =>
-		item.backends[0].includes(currentSecondaryCoin)
+		item.backends![0].includes(currentSecondaryCoin)
 	);
 
 	const [rowData, setRowData] = useState<ICoinInstance>({
@@ -298,7 +311,7 @@ export default function StartWorkPage(): JSX.Element {
 						</div>
 						<div className={styles.paymentsContainer}>
 							<div className={styles.titleContainer}>
-								<QuestionmarkIcon className={styles.icon} />
+								<SupportIcon className={styles.icon} />
 								<h3 className={styles.paymentsTitle}>
 									Support information
 								</h3>

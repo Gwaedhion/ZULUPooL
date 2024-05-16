@@ -17,6 +17,9 @@ import LogoCollapsedIcon from '../../public/logo-collapsed.svg';
 import LogoFullIcon from '../../public/logo-full.svg';
 import SignInCollapsedIcon from '../../public/components-icons/sidebar-icons/login-icon-collapsed.svg';
 import { SidebarProps } from './Sidebar.props';
+import { Inter } from 'next/font/google';
+
+const inter = Inter({ subsets: ['latin', 'cyrillic'] });
 
 export default function Sidebar({ ...props }: SidebarProps): JSX.Element {
 	const pathname = usePathname();
@@ -26,7 +29,7 @@ export default function Sidebar({ ...props }: SidebarProps): JSX.Element {
 	const sidebarItems = [
 		{
 			id: 0,
-			name: 'Pool history',
+			name: 'Pool History',
 			href: '/stats',
 			icon: (
 				<StatsIcon
@@ -52,7 +55,7 @@ export default function Sidebar({ ...props }: SidebarProps): JSX.Element {
 		},
 		{
 			id: 2,
-			name: 'Start work',
+			name: 'Start Work',
 			href: '/connect',
 			icon: (
 				<StartWorkIcon
@@ -204,13 +207,6 @@ export default function Sidebar({ ...props }: SidebarProps): JSX.Element {
 												sidebarExpanded == true,
 										})}
 									>
-										{sidebarExpanded == false && (
-											<div
-												className={styles.navItem__prop}
-											>
-												{element.name}
-											</div>
-										)}
 										<Link
 											className={cn(styles.navLink, {
 												[styles.navLink_expanded]:
@@ -252,6 +248,8 @@ export default function Sidebar({ ...props }: SidebarProps): JSX.Element {
 					<Link
 						className={cn(styles.authLink, {
 							[styles.authLink_expanded]: sidebarExpanded == true,
+							[styles.authLink_collapsed]:
+								sidebarExpanded == false,
 						})}
 						href={'/auth'}
 					>

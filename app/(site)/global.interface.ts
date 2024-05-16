@@ -12,11 +12,11 @@ export interface ICoinSelectValues {
 // ---------- connect page ----------
 
 export interface ICoinInstance {
-	protocol: string;
-	type: string;
-	port: number;
-	backends: string[];
-	shareDiff?: number;
+	protocol: string | undefined;
+	type: string | undefined;
+	port: number | undefined;
+	backends: string[] | undefined;
+	shareDiff?: number | undefined;
 }
 
 // ---------- user credentials ----------
@@ -37,9 +37,9 @@ export interface IGetUserCredentialsResponse {
 export interface IUserStatsHistoryPayload {
 	coin: string;
 	groupByInterval: number;
-	id: string;
-	sessionId: string;
-	timeFrom: number;
+	id: string | null;
+	sessionId: string | null;
+	timeFrom: number | undefined;
 }
 
 export interface IUserStatsHistoryResponse {
@@ -51,6 +51,14 @@ export interface IUserStatsHistoryResponse {
 }
 
 export interface IUserStatsHistoryInstance {
+	name: string;
+	power: number;
+	shareRate: number;
+	shareWork: number;
+	time: number;
+}
+
+export interface IPoolStatsHistoryInstance {
 	name: string;
 	power: number;
 	shareRate: number;

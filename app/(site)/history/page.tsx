@@ -12,6 +12,7 @@ import {
 	IUserStatsHistoryResponse,
 } from '../global.interface';
 import { Column } from 'primereact/column';
+import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 
 export default function HistoryPage(): JSX.Element {
 	const [currentMainCoin, setCurrentMainCoin] = useState('sha256');
@@ -26,41 +27,64 @@ export default function HistoryPage(): JSX.Element {
 		sessionId: sessionStorage.getItem('sessionID'),
 	};
 
-	useEffect(() => {
-		const getUserCredentials = async () => {
-			if (sessionStorage.getItem('sessionId')?.length != 0) {
+	const getUserCredentials = async () => {
+		if (sessionStorage.getItem('sessionId')?.length !== 0) {
+			try {
+				await axios
+					.post(
+						API.user.user.userGetCredentials,
+						JSON.stringify(userSession)
+					)
+					.then((res) => {
+						setUserCredentials(res.data);
+						console.log('setUserCredentials');
+					})
+					.then(() => {
+						console.log('getUserStatsHistory');
+						getUserStatsHistory();
+					});
+			} catch (error) {
+				console.log(error);
 			}
-			await axios
-				.post(
-					API.user.user.userGetCredentials,
-					JSON.stringify(userSession)
-				)
-				.then((res) => setUserCredentials(res.data));
-		};
-		getUserCredentials();
-	}, []);
-
-	let userStatsPayload: IUserStatsHistoryPayload = {
-		coin: currentSecondaryCoin,
-		groupByInterval: 86400,
-		id: userSession.id!,
-		sessionId: userSession.id!,
-		timeFrom: userCredentials?.registrationDate!,
+		}
 	};
 
 	useEffect(() => {
-		const getUserStatsHistory = async () => {
+		getUserCredentials();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const getUserStatsHistory = async () => {
+		let userStatsPayload: IUserStatsHistoryPayload = {
+			coin: currentSecondaryCoin,
+			groupByInterval: 86400,
+			id: userSession.id,
+			sessionId: userSession.id,
+			timeFrom: userCredentials?.registrationDate,
+		};
+		try {
 			await axios
 				.post(
 					API.user.backend.backendQueryPoolStatsHistory,
 					JSON.stringify(userStatsPayload)
 				)
 				.then((res) => setUserStatsHistory(res.data));
-			getUserStatsHistory();
-		};
-	}, []);
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-	const dataForTable: IUserStatsHistoryInstance[] | undefined =
+	useEffect(() => {
+		getUserStatsHistory();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [userCredentials]);
+
+	useEffect(() => {
+		getUserStatsHistory();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentSecondaryCoin]);
+
+	let dataForTable: IUserStatsHistoryInstance[] | undefined =
 		userStatsHistory?.stats;
 
 	return (
@@ -72,14 +96,14 @@ export default function HistoryPage(): JSX.Element {
 				setCurrentSecondaryCoin={setCurrentSecondaryCoin}
 			/>
 			<div className={styles.tableContainer}>
+				<h1 className={styles.pageTitle}>History</h1>
 				<DataTable
 					className={styles.table}
 					value={dataForTable}
-					showGridlines
 					paginator
-					rows={20}
-					rowsPerPageOptions={[20, 50, 100, 200, 500, 1000]}
-					totalRecords={1000}
+					rows={35}
+					sortField="time"
+					sortOrder={-1}
 				>
 					<Column
 						className={styles.column}
@@ -97,13 +121,13 @@ export default function HistoryPage(): JSX.Element {
 								})}
 							</>
 						)}
-					/>
+					></Column>
 					<Column
 						className={styles.column}
 						field={'shareRate'}
 						header={'Share rate'}
 						sortable
-					/>
+					></Column>
 					<Column
 						className={styles.column}
 						field={'power'}
@@ -139,7 +163,7 @@ export default function HistoryPage(): JSX.Element {
 									: 0}
 							</>
 						)}
-					/>
+					></Column>
 					<Column
 						className={styles.column}
 						field={'shareWork'}
@@ -150,7 +174,7 @@ export default function HistoryPage(): JSX.Element {
 								? (rowData.shareWork / 1000000).toFixed(3)
 								: 0
 						}
-					/>
+					></Column>
 				</DataTable>
 			</div>
 		</div>

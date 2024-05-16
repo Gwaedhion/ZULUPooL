@@ -1,0 +1,56 @@
+.pageWrapper {
+	max-width: 1750px;
+	margin-left: auto;
+	margin-right: auto;
+	color: var(--text-color-dark-theme);
+	margin-top: 5px;
+	border-radius: 10px;
+}
+
+.title {
+	padding-top: 25px;
+	color: var(--primary-color);
+	text-align: center;
+	margin-bottom: 25px;
+	font-size: 18px;
+}
+
+.settingsContainer {
+	display: flex;
+	margin-bottom: 20px;
+	gap: 10px;
+	margin-left: 10px;
+}
+
+.settingsButton {
+	font-size: 18px;
+	color: white;
+}
+
+.settingsButton_active {
+	color: var(--primary-color);
+}
+
+.formContainer {
+	max-width: 500px;
+	padding: 20px;
+	background-color: var(--decorative-color);
+	border-radius: 10px;
+}
+
+.decoration {
+	width: 170px;
+	height: 1px;
+	background-color: var(--primary-color);
+	position: absolute;
+	top: 115px;
+	transition: all 0.3s;
+}
+
+.decoration_account {
+	transform: translateX(177px);
+}
+
+.formItem {
+	color: white;
+}

@@ -1,7 +1,7 @@
 export interface IUICoinInstance {
-	protocol: string;
-	type: string;
-	port: number;
-	backends: string;
-	shareDiff?: number;
+	protocol: string | undefined;
+	type: string | undefined;
+	port: number | undefined;
+	backends: string | undefined;
+	shareDiff?: number | undefined;
 }
